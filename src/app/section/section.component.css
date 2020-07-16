@@ -1,0 +1,247 @@
+* {
+  transition: all .2s linear;
+}
+
+.box-margin {
+  margin-top: 50px;
+  height: 1px;
+}
+
+section {
+  width: 90%;
+  padding: 30px;
+  margin: auto;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  box-shadow: 15px 15px 0px rgb(231, 231, 231), -15px -15px 0px rgb(231, 231, 231);
+}
+
+.section-search div h3 {
+  text-align: center;
+  font-size: 2.4em;
+  margin-bottom: 20px;
+  user-select: none;
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgb(80, 80, 80);
+}
+
+select,
+select option {
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  padding: 3px 5px 3px 15px;
+}
+
+select,
+input {
+  appearance: none;
+  background-color: rgb(223, 223, 223);
+  color: rgb(80, 80, 80);
+  outline: none;
+  width: 100%;
+  min-width: 130px;
+  height: 40px;
+  font-size: 15pt;
+  font-weight: bold;
+  border: none;
+  padding: 3px 5px 3px 15px;
+  border-radius: 10px;
+  transition: all .2s;
+  box-shadow: -10px -10px 0 rgb(207, 207, 207);
+  margin-top: 13px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.box-flex {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.box-flex p {
+  font-size: 1.1em;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.inputRaio {
+  display: none;
+}
+
+.box-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-search p {
+  color: rgb(80, 80, 80);
+  font-size: 1.3em;
+  user-select: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+label,
+label div {
+  width: 140px;
+  height: 60px;
+  border-radius: 10px;
+  background-color: rgb(223, 223, 223);
+}
+
+label {
+  margin: 10px;
+  background-color: rgb(207, 207, 207);
+  box-shadow: 10px 10px 0px rgb(207, 207, 207), -10px -10px 0px rgb(207, 207, 207);
+}
+
+select:hover,
+input:hover,
+label div:hover,
+button:hover {
+  background-color: rgb(199, 231, 180);
+}
+
+.pesquisaComCep,
+.pesquisaComLogradouro {
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+#pesquisaComCep:checked~.pesquisaComCep {
+  background-color: rgb(134, 134, 134);
+  box-shadow: 10px 10px 0px rgb(134, 134, 134), -10px -10px 0px rgb(134, 134, 134);
+}
+
+#pesquisaComLogradouro:checked~.pesquisaComLogradouro {
+  background-color: rgb(134, 134, 134);
+  box-shadow: 10px 10px 0px rgb(134, 134, 134), -10px -10px 0px rgb(134, 134, 134);
+}
+
+section button {
+  padding: 10px;
+  border: none;
+  box-shadow: 7px 7px 0px rgb(207, 207, 207), -7px -7px 0px rgb(207, 207, 207);
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+section button:hover {
+  box-shadow: -7px 7px 0px rgb(134, 134, 134), 7px -7px 0px rgb(134, 134, 134);
+}
+
+@media only screen and (max-width:1000px) {
+  .box-flex div {
+    margin-top: 30px;
+    margin-left: 15px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
+  select,
+  input {
+    min-width: 150px;
+  }
+
+  section {
+    width: 97%;
+    padding: 20px 10px 20px 15px;
+  }
+
+  label,
+  label div {
+    width: 130px;
+    height: 50px;
+  }
+}
+
+.section-dados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 550px;
+}
+
+.section-dados h1 {
+  color: rgb(80, 80, 80);
+  margin-top: 5px;
+  font-size: 2.5em;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.section-dados div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.section-dados div div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  user-select: all;
+  margin-top: 30px;
+  padding: 30px 20px 20px 30px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 10px;
+}
+
+.section-dados div div div {
+  background-color: rgb(223, 223, 223);
+  min-width: 150px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
+  transition: all .2s;
+  margin-top: 20px;
+  box-shadow: -10px -10px 0 rgb(207, 207, 207);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+.section-dados div div div p {
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgb(80, 80, 80);
+  font-size: 15pt;
+}
+
+.section-dados div div p:nth-child(1) {
+  margin-top: 0px;
+}
+
+section:hover {
+  box-shadow: 20px 20px 0px rgb(221, 221, 221), -20px -20px 0px rgb(221, 221, 221);
+}
+
+.section-dados div div:hover div {
+  box-shadow: -10px -10px 0 rgb(175, 175, 175);
+}
+
+.section-dados div h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2em;
+  color: #C00;
+  margin-top: 20px;
+}
+
+.noVisibleNoResult {
+  visibility: hidden;
+}
+
+.visibleNoResult {
+  visibility: visible;
+}
+
+.noSelectedText {
+  user-select: none;
+}
+
+.results-arr {
+  margin: 30px 10px 0px 10px;
+}

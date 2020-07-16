@@ -1,0 +1,167 @@
+<div class="box-margin" id="box-parada"></div>
+<div class="box-margin"></div>
+
+<section class="section-search">
+
+  <div>
+    <h3>Procurar com </h3>
+
+    <div class="box-search">
+      <input type="radio" name="optionSearch" checked id="pesquisaComCep" class="inputRaio"
+        (change)="disabledItems = true; colorBox(false); siglaInput.value = ''; municipioInput.value = ''; LogradouroInput.value = ''; boolResult = true; results = null;">
+      <input type="radio" name="optionSearch" id="pesquisaComLogradouro" class="inputRaio"
+        (change)="disabledItems = false; colorBox(true); cepInput.value = ''; boolResult = false; results = null;">
+
+      <label for="pesquisaComCep" class="pesquisaComCep" title="Clique"
+        [style.boxShadow]="colorDisabledCep  + ', ' +  colorDisabledCepReverse">
+        <div class="box-search">
+          <p>CEP</p>
+        </div>
+      </label>
+
+      <label for="pesquisaComLogradouro" class="pesquisaComLogradouro" title="Clique"
+        [style.boxShadow]="colorDisabledLogradouro + ', ' + colorDisabledLogradouroReverse">
+        <div class="box-search">
+          <p>Localidade</p>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div [class.box-flex]="true">
+
+    <div>
+      <p class="noSelectedText">UF: </p>
+      <select id="selectUf" #siglaInput
+        (input)="siglaSelected = siglaInput.value; checkSigla(siglaSelected);" required
+        [disabled]="disabledItems" [style.boxShadow]="colorDisabledLogradouro">
+        <option *ngFor="let item of siglasArr">
+          {{item}}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <p class="noSelectedText">Município: </p>
+      <select name="municipio" #municipioInput (click)="checkRepeatCidade()" (keydown)="checkRepeatCidade()" required
+        [disabled]="disabledItems" [style.boxShadow]="colorDisabledLogradouro">
+        <option></option>
+        <option *ngFor="let item of cidadesArr">
+          {{item.municipio.nome}}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <p class="noSelectedText">Logradouro: </p>
+      <input type="text" name="logradouro" id="logradouro" placeholder="..." required #LogradouroInput
+        [disabled]="disabledItems" [style.boxShadow]="colorDisabledLogradouro" autocomplete="off"
+        (keyup.enter)="resultSearch(cepInput.value, siglaInput.value, municipioInput.value, LogradouroInput.value); results = null;">
+    </div>
+
+  </div>
+
+  <div [class.box-flex]="true">
+    <div>
+      <p class="noSelectedText">CEP: </p>
+      <input type="number" name="cep" id="cep" placeholder="..." required #cepInput [disabled]="!disabledItems"
+        (keyup.enter)="resultSearch(cepInput.value, siglaInput.value, municipioInput.value, LogradouroInput.value); results = null;"
+        [style.boxShadow]="colorDisabledCep" autocomplete="off">
+    </div>
+  </div>
+
+  <div [class.box-flex]="true">
+    <a href="#resultados">
+      <button title="Clique" id="btn-search" class="noSelectedText"
+        (click)="resultSearch(cepInput.value, siglaInput.value, municipioInput.value, LogradouroInput.value); results = null;">
+        <p>Procurar</p>
+      </button>
+    </a>
+  </div>
+</section>
+
+<div class="box-margin"></div>
+
+<section class="section-dados" id="resultados">
+  <h1 class="noSelectedText">Resultado(s):</h1>
+
+  <div>
+    <h2 class="noSelectedText" [class.visibleNoResult]="results == null || results.erro == true"
+      [class.noVisibleNoResult]="results != null">
+      Sem resultados!
+    </h2>
+  </div>
+
+  <div>
+    <div *ngIf="results == null || results.erro == true">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <div>
+
+    <div *ngIf="boolResult && results != null && results.erro != true" title="clique">
+      <div>
+        <p class="noSelectedText">UF:&nbsp;</p>
+        <p>{{results.uf}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">Município:&nbsp;</p>
+        <p>{{results.localidade}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">Bairro:&nbsp;</p>
+        <p>{{results.bairro}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">Logradouro:&nbsp;</p>
+        <p>{{results.logradouro}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">CEP:&nbsp;</p>
+        <p>{{results.cep}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">IBGE:&nbsp;</p>
+        <p>{{results.ibge}}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="!boolResult" [class.results-arr]="true" title="clique">
+    <div *ngFor="let dados of results">
+      <div>
+        <p class="noSelectedText">UF:&nbsp;</p>
+        <p>{{dados.uf}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">Município:&nbsp;</p>
+        <p>{{dados.localidade}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">Bairro:&nbsp;</p>
+        <p>{{dados.bairro}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">Logradouro:&nbsp;</p>
+        <p>{{dados.logradouro}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">CEP:&nbsp;</p>
+        <p>{{dados.cep}}</p>
+      </div>
+      <div>
+        <p class="noSelectedText">IBGE:&nbsp;</p>
+        <p>{{dados.ibge}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="box-margin"></div>
